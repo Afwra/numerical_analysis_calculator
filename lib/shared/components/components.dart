@@ -20,30 +20,27 @@ List<NumericalMethods> methods = [
 ];
 
 Widget methodsList(int index,context) =>Padding(
-  padding: const EdgeInsets.all(15.0),
+  padding: const EdgeInsets.all(10.0),
   child: GestureDetector(
     child: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: HexColor("FFD93D"),
       ),
-      height: 120,
+      height: 100,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image(image: NetworkImage(methods[index].imagePath),width: 100,height: 100,),
-          const SizedBox(width: 15,),
-          Expanded(
-            child: Text(
-              methods[index].name,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+          Text(
+            methods[index].name,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

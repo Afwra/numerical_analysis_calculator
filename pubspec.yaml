@@ -48,6 +48,7 @@ dev_dependencies:
   math_keyboard: ^0.1.4+1
   hexcolor: ^2.0.6
   math_expressions: ^2.3.0
+  buildcondition: ^0.0.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
