@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:math_keyboard/math_keyboard.dart';
-import 'package:numerical_analysis_calculator/models/results_screen/false_position_results.dart';
 
 import '../../shared/components/components.dart';
+import '../results_screen/false_position_results.dart';
 
 
 class FalsePositionScreen extends StatelessWidget {

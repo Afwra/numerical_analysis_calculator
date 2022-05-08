@@ -1,22 +1,31 @@
 
 import 'package:flutter/material.dart';
-import 'package:numerical_analysis_calculator/models/methods_screen/bisection_screen.dart';
-import 'package:numerical_analysis_calculator/models/methods_screen/fixed_point_screen.dart';
-import 'package:numerical_analysis_calculator/modules/numerical_methods.dart';
 import 'package:hexcolor/hexcolor.dart';
-import '../../models/methods_screen/false_position_screen.dart';
-import '../../modules/result_model.dart';
+import 'package:numerical_analysis_calculator/models/newton_model.dart';
+import 'package:numerical_analysis_calculator/models/secant_result_model.dart';
+import 'package:numerical_analysis_calculator/modules/methods_screen/newton_method.dart';
+import 'package:numerical_analysis_calculator/modules/methods_screen/secant_method.dart';
+
+import '../../models/numerical_methods.dart';
+
+import '../../modules/methods_screen/bisection_screen.dart';
+import '../../modules/methods_screen/false_position_screen.dart';
+import '../../modules/methods_screen/fixed_point_screen.dart';
 
 List<Widget> screens = [
   BisectionScreen(),
   FalsePositionScreen(),
   FixedPointScreen(),
+  NewtonScreen(),
+  SecantScreen(),
 ];
 
 List<NumericalMethods> methods = [
-  NumericalMethods(name: 'Bisection Method', imagePath: 'https://freesvg.org/img/1538299359.png'),
-  NumericalMethods(name: 'False Position Method', imagePath: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/False_position_method.svg/1024px-False_position_method.svg.png'),
-  NumericalMethods(name: 'Simple Fixed Point', imagePath: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Fixed_point_example.svg/800px-Fixed_point_example.svg.png'),
+  NumericalMethods(name: 'Bisection Method'),
+  NumericalMethods(name: 'False Position Method'),
+  NumericalMethods(name: 'Simple Fixed Point'),
+  NumericalMethods(name: 'Newton Method'),
+  NumericalMethods(name: 'Secant Method'),
 ];
 
 Widget methodsList(int index,context) =>Padding(
@@ -58,7 +67,7 @@ void navigateTo(context, screen){
   );
 }
 
-Widget itemBuilder(ResultModel result){
+Widget itemBuilder(result){
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(15),
@@ -115,6 +124,181 @@ Widget itemBuilder(ResultModel result){
                 fontSize: 20
             ),),
             Text('F(XR) = ${result.funXr.toStringAsFixed(3)}',style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+            ),),
+          ],
+        ),
+        const SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              'Error Rate = ${result.error.toStringAsFixed(3)}',
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+Widget fixedPointItemBuilder(result){
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(15),
+      color: HexColor("FFD93D"),
+    ),
+    child: Column(
+      children: [
+        Text('Iter = ${result.iter}',style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20
+        ),),
+        const SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text('X0 = ${result.xi.toStringAsFixed(3)}',style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+            ),),
+            Text('F(XL) = ${result.funXi.toStringAsFixed(3)}',style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+            ),),
+          ],
+        ),
+        const SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              'Error Rate = ${result.error.toStringAsFixed(3)}',
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+Widget newtonItemBuilder(NewtonResultModel result){
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(15),
+      color: HexColor("FFD93D"),
+    ),
+    child: Column(
+      children: [
+        Text('Iter = ${result.iter}',style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20
+        ),),
+        const SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text('Xi = ${result.x0.toStringAsFixed(3)}',style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+            ),),
+            Text('F(Xi) = ${result.funX0.toStringAsFixed(3)}',style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+            ),),
+          ],
+        ),
+        const SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              "F'(Xi) = ${result.fDashX0.toStringAsFixed(3)}",
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              'Error Rate = ${result.error.toStringAsFixed(3)}',
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+Widget secantItemBuilder(SecantResultModel result){
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(15),
+      color: HexColor("FFD93D"),
+    ),
+    child: Column(
+      children: [
+        Text('Iter = ${result.iter}',style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20
+        ),),
+        const SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text('Xi-1 = ${result.xiMinus1.toStringAsFixed(3)}',style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+            ),),
+            Text('F(Xi-1) = ${result.funXiMinus1.toStringAsFixed(3)}',style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+            ),),
+          ],
+        ),
+        const SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+          children: [
+            Text('XI = ${result.xi.toStringAsFixed(3)}',style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+            ),),
+            Text('F(XI) = ${result.funXi.toStringAsFixed(3)}',style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 20
