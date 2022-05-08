@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:math_keyboard/math_keyboard.dart';
-import 'package:numerical_analysis_calculator/models/results_screen/results_screen.dart';
-import 'package:numerical_analysis_calculator/shared/components/components.dart';
+import 'package:numerical_analysis_calculator/modules/results_screen/newton_results.dart';
 
-class BisectionScreen extends StatelessWidget {
+import '../../shared/components/components.dart';
+
+class NewtonScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   var equationController = MathFieldEditingController();
-  var xlController = TextEditingController();
-  var xuController = TextEditingController();
+  var x0Controller = TextEditingController();
   var errorController = TextEditingController();
 
+  NewtonScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bisection Method'),
+        title: const Text('Newton Method'),
         backgroundColor: HexColor("21325E"),
       ),
       body: Padding(
@@ -43,7 +44,7 @@ class BisectionScreen extends StatelessWidget {
                   MathField(
                     controller: equationController,
                     keyboardType: MathKeyboardType.expression,
-                    variables: const ['x', 'y', 'z'],
+                    variables: const ['x'],
                     decoration: const InputDecoration(
                       labelText: 'Enter Equation',
                       border: OutlineInputBorder(),
@@ -56,7 +57,7 @@ class BisectionScreen extends StatelessWidget {
                     height: 20,
                   ),
                   const Text(
-                    "XL: ",
+                    "X0: ",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -68,42 +69,14 @@ class BisectionScreen extends StatelessWidget {
                   ),
                   TextFormField(
                     keyboardType: TextInputType.number,
-                    controller: xlController,
+                    controller: x0Controller,
                     decoration: const InputDecoration(
-                      labelText: 'Enter XL',
+                      labelText: 'Enter X0',
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Enter X Lower";
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    "XU:",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: xuController,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter XU',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Enter X Upper";
+                        return "Enter X0";
                       }
                       return null;
                     },
@@ -146,13 +119,7 @@ class BisectionScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            navigateTo(
-                context,
-                ResultsScreen(
-                    xl: double.parse(xlController.text),
-                    xu: double.parse(xuController.text),
-                    eps: double.parse(errorController.text),
-                    equationController: equationController));
+            navigateTo(context, NewtonResults(x0: double.parse(x0Controller.text), eps: double.parse(errorController.text), equationController: equationController));
           }
         },
         backgroundColor: HexColor("F1D00A"),

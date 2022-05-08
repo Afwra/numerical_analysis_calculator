@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:numerical_analysis_calculator/models/home_screen.dart';
+
+import 'modules/home_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
