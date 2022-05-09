@@ -18,7 +18,7 @@ class FixedPointScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Simple Fixed Point Method'),
-        backgroundColor: HexColor("21325E"),
+        backgroundColor: HexColor("3F72AF"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -35,7 +35,7 @@ class FixedPointScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(
@@ -61,7 +61,7 @@ class FixedPointScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(
@@ -89,7 +89,7 @@ class FixedPointScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(
@@ -115,7 +115,7 @@ class FixedPointScreen extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: HexColor("3E497A"),
+      backgroundColor: HexColor("DBE2EF"),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
@@ -128,7 +128,7 @@ class FixedPointScreen extends StatelessWidget {
                     ));
           }
         },
-        backgroundColor: HexColor("F1D00A"),
+        backgroundColor: HexColor("3F72AF"),
         child: const Icon(Icons.play_arrow_rounded),
       ),
     );

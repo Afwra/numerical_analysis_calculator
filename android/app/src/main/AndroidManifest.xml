@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.numerical_analysis_calculator">
    <application
-        android:label="numerical_analysis_calculator"
+        android:label="Parabola"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

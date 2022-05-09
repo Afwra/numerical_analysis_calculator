@@ -26,7 +26,7 @@ class FixedPointResults extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Simple Fixed Point Mehtod Results'),
-        backgroundColor: HexColor("21325E"),
+        backgroundColor: HexColor("3F72AF"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -68,7 +68,7 @@ class FixedPointResults extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: HexColor("3E497A"),
+      backgroundColor: HexColor("DBE2EF"),
     );
   }
 
