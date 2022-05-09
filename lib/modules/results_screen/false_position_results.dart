@@ -31,7 +31,7 @@ class _FalsePositionResultsScreenState extends State<FalsePositionResultsScreen>
     return Scaffold(
       appBar: AppBar(
         title: const Text('Results'),
-        backgroundColor: HexColor("21325E"),
+        backgroundColor: HexColor("3F72AF"),
       ),
       body: BuildCondition(
         condition: root != 0,
@@ -89,7 +89,7 @@ class _FalsePositionResultsScreenState extends State<FalsePositionResultsScreen>
         ),
         fallback: (context) => const ErrorScreen(),
       ),
-      backgroundColor: HexColor("3E497A"),
+      backgroundColor: HexColor("DBE2EF"),
     );
   }
 

@@ -18,7 +18,7 @@ class SecantScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Secant Method'),
-        backgroundColor: HexColor("21325E"),
+        backgroundColor: HexColor("3F72AF"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -35,7 +35,7 @@ class SecantScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(
@@ -61,7 +61,7 @@ class SecantScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(
@@ -89,7 +89,7 @@ class SecantScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(
@@ -117,7 +117,7 @@ class SecantScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(
@@ -143,14 +143,14 @@ class SecantScreen extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: HexColor("3E497A"),
+      backgroundColor: HexColor("DBE2EF"),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
             navigateTo(context, SecantResultsScreen(eps: double.parse(errorController.text), xi: double.parse(xiController.text), xiMinus1: double.parse(xiMinus1Controller.text), equationController: equationController));
           }
         },
-        backgroundColor: HexColor("F1D00A"),
+        backgroundColor: HexColor("3F72AF"),
         child: const Icon(Icons.play_arrow_rounded),
       ),
     );

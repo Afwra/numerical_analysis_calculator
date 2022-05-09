@@ -7,6 +7,8 @@ import '../../modules/methods_screen/bisection_screen.dart';
 import '../../modules/methods_screen/false_position_screen.dart';
 import '../../modules/methods_screen/fixed_point_screen.dart';
 
+
+
 List<Widget> screens = [
   BisectionScreen(),
   FalsePositionScreen(),
@@ -29,7 +31,7 @@ Widget methodsList(int index,context) =>Padding(
     child: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: HexColor("FFD93D"),
+        color: HexColor("FF7E67"),
       ),
       height: 100,
       child: Row(
