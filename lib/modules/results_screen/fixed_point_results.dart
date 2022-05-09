@@ -3,7 +3,7 @@ import 'package:math_keyboard/math_keyboard.dart';
 import 'package:math_expressions/math_expressions.dart';
 import 'package:numerical_analysis_calculator/models/simple_fixed_point_result_model.dart';
 import 'package:hexcolor/hexcolor.dart';
-import '../../shared/components/components.dart';
+import 'package:lazy_data_table/lazy_data_table.dart';
 
 class FixedPointResults extends StatelessWidget {
 
@@ -18,21 +18,54 @@ class FixedPointResults extends StatelessWidget {
   FixedPointResults({required this.eps,required this.x0,required this.equationController});
 
   List<SimpleFixedPointResultModel> results =[];
+  List<String> tableHeaders = ['Xi' , 'F(Xi)','Error'];
 
   @override
   Widget build(BuildContext context) {
-    calculateFixedPoint();
+    double root = calculateFixedPoint();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Simple Fixed Point Mehtod Results'),
         backgroundColor: HexColor("21325E"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: ListView.separated(
-          itemBuilder: (context,index){return SingleChildScrollView(child: fixedPointItemBuilder(results[index]),);},
-          separatorBuilder: (context,index)=>const SizedBox(height: 15,),
-          itemCount: results.length,
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: LazyDataTable(
+                rows: results.length,
+                columns: 3,
+                tableDimensions: const LazyDataTableDimensions(
+                  cellHeight: 50,
+                  cellWidth: 100,
+                  topHeaderHeight: 50,
+                  leftHeaderWidth: 75,
+                ),
+                topHeaderBuilder: (i) => Center(child: Text(tableHeaders[i])),
+                leftHeaderBuilder: (i) => Center(child: Text(results[i].iter.toString())),
+                dataCellBuilder: (i, j) {
+                  if(j == 0) {
+                    return Center(child: Text(results[i].xi.toStringAsFixed(3)));
+                  }
+                  else if(j==1){
+                    return Center(child: Text(results[i].funXi.toStringAsFixed(3)));
+                  }
+                  else{
+                    return Center(child: Text('${results[i].error.toStringAsFixed(3)}%'));
+                  }
+                },
+                topLeftCornerWidget: const Center(child: Text("Iter")),
+              ),
+            ),
+            const SizedBox(height: 15,),
+            Text('Root = ${root.toStringAsFixed(3)}',style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20
+            ),),
+          ],
         ),
       ),
       backgroundColor: HexColor("3E497A"),

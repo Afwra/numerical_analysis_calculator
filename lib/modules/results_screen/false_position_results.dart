@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:math_keyboard/math_keyboard.dart';
 import 'package:math_expressions/math_expressions.dart';
 import '../../models/result_model.dart';
-import '../../shared/components/components.dart';
 import 'package:buildcondition/buildcondition.dart';
-
+import 'package:lazy_data_table/lazy_data_table.dart';
 import '../error_screen.dart';
 
 class FalsePositionResultsScreen extends StatefulWidget {
@@ -23,6 +22,7 @@ class FalsePositionResultsScreen extends StatefulWidget {
 
 class _FalsePositionResultsScreenState extends State<FalsePositionResultsScreen> {
   List<ResultModel> results =[];
+  List<String> tableHeaders = ['Xl','F(Xl)','Xu','F(Xu)','Xr','F(Xr)','Error'];
 
 
   @override
@@ -35,12 +35,56 @@ class _FalsePositionResultsScreenState extends State<FalsePositionResultsScreen>
       ),
       body: BuildCondition(
         condition: root != 0,
-        builder:(context) => Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: ListView.separated(
-            itemBuilder: (context,index){return SingleChildScrollView(child: itemBuilder(results[index]),);},
-            separatorBuilder: (context,index)=>const SizedBox(height: 15,),
-            itemCount: results.length,
+        builder: (context) =>Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: LazyDataTable(
+                  rows: results.length,
+                  columns: 7,
+                  tableDimensions: const LazyDataTableDimensions(
+                    cellHeight: 50,
+                    cellWidth: 100,
+                    topHeaderHeight: 50,
+                    leftHeaderWidth: 75,
+                  ),
+                  topHeaderBuilder: (i) => Center(child: Text(tableHeaders[i])),
+                  leftHeaderBuilder: (i) => Center(child: Text(results[i].iter.toString())),
+                  dataCellBuilder: (i, j) {
+                    if(j == 0) {
+                      return Center(child: Text(results[i].xl.toStringAsFixed(3)));
+                    }
+                    else if(j==1){
+                      return Center(child: Text(results[i].funXl.toStringAsFixed(3)));
+                    }
+                    else if(j==2){
+                      return Center(child: Text(results[i].xu.toStringAsFixed(3)));
+                    }
+                    else if(j==3){
+                      return Center(child: Text(results[i].funXu.toStringAsFixed(3)));
+                    }
+                    else if(j==4){
+                      return Center(child: Text(results[i].xr.toStringAsFixed(3)));
+                    }
+                    else if(j==5){
+                      return Center(child: Text(results[i].funXr.toStringAsFixed(3)));
+                    }
+                    else{
+                      return Center(child: Text('${results[i].error.toStringAsFixed(3)}%'));
+                    }
+                  },
+                  topLeftCornerWidget: const Center(child: Text("Iter")),
+                ),
+              ),
+              const SizedBox(height: 15,),
+              Text('Root = ${root.toStringAsFixed(3)}',style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20
+              ),),
+            ],
           ),
         ),
         fallback: (context) => const ErrorScreen(),
@@ -48,17 +92,6 @@ class _FalsePositionResultsScreenState extends State<FalsePositionResultsScreen>
       backgroundColor: HexColor("3E497A"),
     );
   }
-
-  // double f(double num){
-  //   var mathExpression = TeXParser(widget.equationController.currentEditingValue()).parse();
-  //   ContextModel cm = ContextModel();
-  //   print(widget.equationController.currentEditingValue());
-  //   cm.bindVariableName('x', Number(widget.xl));
-  //   mathExpression.evaluate(EvaluationType.REAL,cm);
-  //   return mathExpression.evaluate(EvaluationType.REAL,cm);
-  //
-  //
-  // }
 
   double calculateFalsePosition(){
     var mathExpression = TeXParser(widget.equationController.currentEditingValue()).parse();
