@@ -49,6 +49,7 @@ dev_dependencies:
   hexcolor: ^2.0.6
   math_expressions: ^2.3.0
   buildcondition: ^0.0.4
+  lazy_data_table: ^0.3.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
