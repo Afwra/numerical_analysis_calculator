@@ -8,7 +8,6 @@ import '../../modules/methods_screen/false_position_screen.dart';
 import '../../modules/methods_screen/fixed_point_screen.dart';
 
 
-
 List<Widget> screens = [
   BisectionScreen(),
   FalsePositionScreen(),
@@ -23,6 +22,12 @@ List<NumericalMethods> methods = [
   NumericalMethods(name: 'Simple Fixed Point'),
   NumericalMethods(name: 'Newton Method'),
   NumericalMethods(name: 'Secant Method'),
+];
+// List<Widget> matrixScreens = [GaussElimination(),LuDecomposition(),Cramer()];
+List<String> matrix = [
+  'Gauss Elimination',
+  'LU Decomposition',
+  "Cramer's Rule"
 ];
 
 Widget methodsList(int index,context) =>Padding(
@@ -57,12 +62,59 @@ Widget methodsList(int index,context) =>Padding(
   ),
 );
 
+// Widget matrixList(int index,context,TextEditingController r0c0,TextEditingController r0c1,TextEditingController r0c2,TextEditingController r0c3,TextEditingController r1c0,TextEditingController r1c1,TextEditingController r1c2,TextEditingController r1c3,TextEditingController r2c0,TextEditingController r2c1,TextEditingController r2c2,TextEditingController r2c3) {
+//   matrixInfo =
+//   [
+//     [double.parse(r0c0.text),double.parse(r0c1.text),double.parse(r0c2.text),double.parse(r0c3.text)],
+//     [double.parse(r1c0.text),double.parse(r1c1.text),double.parse(r1c2.text),double.parse(r1c3.text)],
+//     [double.parse(r2c0.text),double.parse(r2c1.text),double.parse(r2c2.text),double.parse(r2c3.text)],
+//   ];
+//   return Padding(
+//     padding: const EdgeInsets.all(10.0),
+//     child: GestureDetector(
+//       child: Container(
+//         decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(15),
+//           color: HexColor("FF7E67"),
+//         ),
+//         height: 100,
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             Text(
+//               matrix[index],
+//               style: const TextStyle(
+//                 fontSize: 20,
+//                 fontWeight: FontWeight.bold,
+//                 color: Colors.white,
+//               ),
+//               maxLines: 2,
+//               overflow: TextOverflow.ellipsis,
+//             ),
+//           ],
+//         ),
+//       ),
+//       onTap: () {
+//         matrixNavigateTo(context, matrixScreens[index],matrixInfo);
+//       },
+//     ),
+//   );
+// }
+
 void navigateTo(context, screen){
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => screen),
   );
 }
+
+// void matrixNavigateTo(context,screen,matrixInfo){
+//   Navigator.push(
+//     context,
+//     MaterialPageRoute(builder: (context) => screen),
+//   );
+
 
 // Widget itemBuilder(result){
 //   return Container(

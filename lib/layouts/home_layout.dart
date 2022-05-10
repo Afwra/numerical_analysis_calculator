@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:numerical_analysis_calculator/modules/home_screen.dart';
-import 'package:numerical_analysis_calculator/modules/matrix_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:numerical_analysis_calculator/modules/matrix_screen/matrix_home_screen.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class HomeLayout extends StatefulWidget {
 class _HomeLayoutState extends State<HomeLayout> {
   int currentPage = 0;
 
-  List<Widget> screens = [HomeScreen(),const MatrixScreen()];
+  List<Widget> screens = [HomeScreen(),MatrixHomeScreen()];
 
   @override
   Widget build(BuildContext context) {

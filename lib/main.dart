@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
       backgroundColor: Colors.grey.shade400,
       showLoader: true,
       loadingText: const Text("Loading..."),
-      navigator: HomeLayout(),
+      navigator:const HomeLayout(),
       durationInSeconds: 5,
     );
   }
