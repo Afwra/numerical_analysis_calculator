@@ -11,6 +11,8 @@ class BisectionScreen extends StatelessWidget {
   var xuController = TextEditingController();
   var errorController = TextEditingController();
 
+  BisectionScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
