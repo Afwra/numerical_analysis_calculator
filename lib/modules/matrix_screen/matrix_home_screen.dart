@@ -8,7 +8,7 @@ import 'package:buildcondition/buildcondition.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class MatrixHomeScreen extends StatefulWidget {
-  MatrixHomeScreen({Key? key}) : super(key: key);
+  const MatrixHomeScreen({Key? key}) : super(key: key);
 
   @override
   State<MatrixHomeScreen> createState() => _MatrixHomeScreenState();
