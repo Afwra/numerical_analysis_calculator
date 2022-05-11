@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:math_keyboard/math_keyboard.dart';
-import 'package:numerical_analysis_calculator/shared/components/components.dart';
-import '../results_screen/results_screen.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
-class BisectionScreen extends StatelessWidget {
+
+class GoldenSectionSearchScreen extends StatelessWidget {
+
   var formKey = GlobalKey<FormState>();
   var equationController = MathFieldEditingController();
   var xlController = TextEditingController();
   var xuController = TextEditingController();
-  var errorController = TextEditingController();
+  var iterController = TextEditingController();
+  bool min = true;
 
+
+  GoldenSectionSearchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bisection Method'),
-        backgroundColor: HexColor("3F72AF"),
-      ),
+      appBar: AppBar(title: const Text('Golden Section Search'),backgroundColor: HexColor("3F72AF")),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(
@@ -43,7 +44,7 @@ class BisectionScreen extends StatelessWidget {
                   MathField(
                     controller: equationController,
                     keyboardType: MathKeyboardType.expression,
-                    variables: const ['x', 'y', 'z'],
+                    variables: const ['x'],
                     decoration: const InputDecoration(
                       labelText: 'Enter Equation',
                       border: OutlineInputBorder(),
@@ -112,7 +113,7 @@ class BisectionScreen extends StatelessWidget {
                     height: 20,
                   ),
                   const Text(
-                    "Error Rate:",
+                    "Iter:",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -124,16 +125,27 @@ class BisectionScreen extends StatelessWidget {
                   ),
                   TextFormField(
                     keyboardType: TextInputType.number,
-                    controller: errorController,
+                    controller: iterController,
                     decoration: const InputDecoration(
-                      labelText: 'Enter Error',
+                      labelText: 'Enter Iter',
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Enter Error";
+                        return "Enter Iter";
                       }
                       return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ToggleSwitch(
+                    initialLabelIndex: 0,
+                    totalSwitches: 2,
+                    labels: const ['Min', 'Max'],
+                    onToggle: (index) {
+                      index == 0? min = true : min = false;
                     },
                   )
                 ],
@@ -146,13 +158,13 @@ class BisectionScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            navigateTo(
-                context,
-                ResultsScreen(
-                    xl: double.parse(xlController.text),
-                    xu: double.parse(xuController.text),
-                    eps: double.parse(errorController.text),
-                    equationController: equationController));
+            // navigateTo(
+            //     context,
+            //     ResultsScreen(
+            //         xl: double.parse(xlController.text),
+            //         xu: double.parse(xuController.text),
+            //         eps: double.parse(errorController.text),
+            //         equationController: equationController));
           }
         },
         backgroundColor: HexColor("3F72AF"),
