@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_titled_container/flutter_titled_container.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 
 class GaussElimination extends StatelessWidget {
@@ -25,8 +26,8 @@ class GaussElimination extends StatelessWidget {
   Widget build(BuildContext context) {
     calculateGE();
     return Scaffold(
-      appBar: AppBar(title: const Text('Gauss Results'),),
-    body: SingleChildScrollView(
+      appBar: AppBar(title: const Text('Gauss Results'),backgroundColor: HexColor("3F72AF")),
+      body: SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -169,6 +170,7 @@ class GaussElimination extends StatelessWidget {
         ),
       ),
     ),
+      backgroundColor: HexColor("DBE2EF"),
     );
   }
 

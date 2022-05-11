@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:numerical_analysis_calculator/modules/ch3_screens/optimization_home_screen.dart';
 import 'package:numerical_analysis_calculator/modules/home_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:numerical_analysis_calculator/modules/matrix_screen/matrix_home_screen.dart';
@@ -15,7 +16,7 @@ class HomeLayout extends StatefulWidget {
 class _HomeLayoutState extends State<HomeLayout> {
   int currentPage = 0;
 
-  List<Widget> screens = [HomeScreen(),MatrixHomeScreen()];
+  List<Widget> screens = [HomeScreen(),MatrixHomeScreen(),OptimizationHomeScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +27,9 @@ class _HomeLayoutState extends State<HomeLayout> {
         bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: Colors.blueAccent,
           items: const <Widget>[
-
-            Icon(Icons.add, size: 30),
-            Icon(Icons.list, size: 30),
+            Icon(Icons.equalizer, size: 30),
+            Icon(Icons.format_shapes_rounded, size: 30),
+            Icon(Icons.search, size: 30),
           ],
           buttonBackgroundColor: Colors.white,
           color: HexColor("3F72AF"),

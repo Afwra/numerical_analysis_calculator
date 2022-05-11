@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_titled_container/flutter_titled_container.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class LuDecomposition extends StatelessWidget {
   List<dynamic> matrixInfo;
@@ -53,7 +54,7 @@ class LuDecomposition extends StatelessWidget {
   Widget build(BuildContext context) {
     calculateLu();
     return Scaffold(
-      appBar: AppBar(title: const Text('LU Results'),),
+      appBar: AppBar(title: const Text('LU Results'),backgroundColor: HexColor("3F72AF")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -441,6 +442,7 @@ class LuDecomposition extends StatelessWidget {
           ),
         ),
       ),
+      backgroundColor: HexColor("DBE2EF"),
     );
   }
 

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_titled_container/flutter_titled_container.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class Cramer extends StatelessWidget {
   List<dynamic> matrixInfo;
@@ -20,7 +21,7 @@ class Cramer extends StatelessWidget {
   Widget build(BuildContext context) {
     calculateCramer();
     return Scaffold(
-      appBar: AppBar(title: const Text('Gauss Results'),),
+      appBar: AppBar(title: const Text('Gauss Results'),backgroundColor: HexColor("3F72AF")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -204,6 +205,7 @@ class Cramer extends StatelessWidget {
           ),
         ),
       ),
+      backgroundColor: HexColor("DBE2EF"),
     );
   }
 
