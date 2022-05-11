@@ -19,12 +19,15 @@ class GaussElimination extends StatelessWidget {
   var r2c2 = TextEditingController(text: '0');
   var r2c3 = TextEditingController(text: '0');
 
-  List<List<double>> matrixInfo =[];
+  var matrixInfo =[];
   var result1 =[];
   var result2 =[];
   var result3 =[];
-  var result;
-  var testResult =[];
+  // List<List<double>> result1 =[];
+  // List<List<double>> result2 =[];
+  // List<List<double>> result3 =[];
+
+
 
   double x1 = 0;
   double x2 = 0;
@@ -34,24 +37,74 @@ class GaussElimination extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    result = [result1,result2,result3];
     calculateGE();
     return Scaffold(
       appBar: AppBar(title: const Text('Results'),),
-      body: ListView.builder(itemBuilder: (context,index){
-        // if(index == 0){
-        //   fillMatrix(result1);
-        // }
-        // else if(index == 1){
-        //   fillMatrix(result2);
-        // }
-        // else{
-        //   fillMatrix(result3);
-        // }
-        return display(testResult[index]);
-      },
-        itemCount: 3,
-      ),
+    body: Column(
+      children: [
+        const Text('Step 1: ',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+        const SizedBox(height: 10,),
+        RichText(
+            text: TextSpan(
+              style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),
+              children:<TextSpan>[
+                TextSpan(text: '${result1[0].toString()}\n'),
+                TextSpan(text: '${result1[1].toString()}\n'),
+                TextSpan(text: '${result1[2].toString()}\n'),
+              ]
+            )
+        ),
+        const SizedBox(height: 20,),
+        const Text('Step 2: ',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+        const SizedBox(height: 10,),
+        RichText(
+            text: TextSpan(
+                style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),
+                children:<TextSpan>[
+                  TextSpan(text: '${result2[0].toString()}\n'),
+                  TextSpan(text: '${result2[1].toString()}\n'),
+                  TextSpan(text: '${result2[2].toString()}\n'),
+                ]
+            )
+        ),
+        const SizedBox(height: 20,),
+        const Text('Step 3: ',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+        const SizedBox(height: 10,),
+        RichText(
+            text: TextSpan(
+                style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),
+                children:<TextSpan>[
+                  TextSpan(text: '${result3[0].toString()}\n'),
+                  TextSpan(text: '${result3[1].toString()}\n'),
+                  TextSpan(text: '${result3[2].toString()}\n'),
+                ]
+            )
+        ),
+        const SizedBox(height: 20,),
+      ],
+    ),
+    //   body: Column(
+    //     children: [
+    //     display(result1),
+    //     const SizedBox(height: 10,),
+    //     display(result2),
+    //     const SizedBox(height: 10,),
+    //     display(result3),
+    // ],
+    // ),
+      // body: ListView.builder(itemBuilder: (context,index){
+      //   return Column(
+      //     children: [
+      //       display(result1),
+      //       const SizedBox(height: 10,),
+      //       display(result2),
+      //       const SizedBox(height: 10,),
+      //       display(result3),
+      //     ],
+      //   );
+      // },
+      //   itemCount: 3,
+      // ),
       // body: SingleChildScrollView(
       //   child: Column(
       //     children: [
@@ -169,10 +222,13 @@ class GaussElimination extends StatelessWidget {
   }
 
   void calculateGE(){
+    // result1[0] = List.unmodifiable(matrixInfo[0]);
+    // result1[1] = List.unmodifiable(matrixInfo[1]);
+    // result1[2] = List.unmodifiable(matrixInfo[2]);
     result1 = json.decode(json.encode(matrixInfo));
-    testResult.add(matrixInfo);
     // result1 = matrixInfo.toList();
     // result1 = deepCopy(matrixInfo);
+    // result1 = List.unmodifiable(matrixInfo);
     print(result1.runtimeType);
     print('Results 1st = $result1 ');
     var m21 = matrixInfo[1][0] / matrixInfo[0][0];
@@ -184,7 +240,6 @@ class GaussElimination extends StatelessWidget {
       var e1 = ((m21)*matrixInfo[0][j]);
       matrixInfo[1][j] = e2 - e1;
     }
-    testResult.add(matrixInfo);
     result2 = json.decode(json.encode(matrixInfo));
     print("result 2 = $result2");
     for (int j = 0; j < 4; j++)
@@ -201,7 +256,6 @@ class GaussElimination extends StatelessWidget {
       var e1 = ((m32)*matrixInfo[1][j]);
       matrixInfo[2][j] = e3 - e1;
     }
-    testResult.add(matrixInfo);
     result3 = json.decode(json.encode(matrixInfo));
     print("result 3 = $result3");
 
@@ -210,12 +264,14 @@ class GaussElimination extends StatelessWidget {
     x1 = (matrixInfo[0][3] - ((matrixInfo[0][1] * x2) + (matrixInfo[0][2] * x3))) / matrixInfo[0][0];
 
     print('X1 = $x1   , X2 = $x2  , X3 = $x3');
-    print('final matrixInfo ${matrixInfo}');
     print('result 1 #2 = $result1');
+    print('result 2 #2 = $result2');
+    print('result 3 #2 = $result3');
+    print(result1[0].toString());
 
 
   }
-  Widget display(result){
+  Widget display(var result){
     fillMatrix(result);
     return Column(
       children: [
@@ -445,7 +501,7 @@ class GaussElimination extends StatelessWidget {
       ],
     );
   }
-  void fillMatrix(result){
+  void fillMatrix(var result){
     print('display');
     print(result);
     r0c0.text = result[0][0].toString();
@@ -460,8 +516,33 @@ class GaussElimination extends StatelessWidget {
     r2c1.text = result[2][1].toString();
     r2c2.text = result[2][2].toString();
     r2c3.text = result[2][3].toString();
+    // r0c0.text = result[0].toString();
+    // r0c1.text = result[1].toString();
+    // r0c2.text = result[2].toString();
+    // r0c3.text = result[3].toString();
+    // r1c0.text = result[4].toString();
+    // r1c1.text = result[5].toString();
+    // r1c2.text = result[6].toString();
+    // r1c3.text = result[7].toString();
+    // r2c0.text = result[8].toString();
+    // r2c1.text = result[8].toString();
+    // r2c2.text = result[9].toString();
+    // r2c3.text = result[10].toString();
 
   }
-
+  // void copyMatrix(matrix1,matrix2) {
+  //   matrix2 = List.unmodifiable(matrix1);
+  //   // for (int i = 0; i < 3; i++) {
+  //   //   for (int j = 0; j < 4; j++) {
+  //   //     matrix2[i][j] = matrix1[i][j];
+  //   //   }
+  //   // }
+  //   // for (int i = 0; i < 3; i++) {
+  //   //   matrix2 = List.unmodifiable(matrix1);
+  //   //   // for (int j = 0; j < 4; j++) {
+  //   //   //   matrix2.add(double.parse(List.unmodifiable(matrix1[i][j])));
+  //   //   // }
+  //   // }
+  // }
 
 }
