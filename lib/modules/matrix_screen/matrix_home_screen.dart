@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:matrix_input/matrix_input.dart';
+import 'package:numerical_analysis_calculator/modules/matrix_screen/cramer.dart';
 import 'package:numerical_analysis_calculator/modules/matrix_screen/gauss_elimination.dart';
+import 'package:numerical_analysis_calculator/modules/matrix_screen/lu_decomposition.dart';
 import 'package:numerical_analysis_calculator/shared/components/components.dart';
 
 class MatrixHomeScreen extends StatelessWidget {
@@ -339,7 +341,7 @@ class MatrixHomeScreen extends StatelessWidget {
                     ),
                     onTap: (){
                       fillMatrix();
-                      print(matrixInfo);
+                      navigateTo(context, LuDecomposition(matrixInfo: matrixInfo,));
                     },
                   ),
                   const SizedBox(width: 10,),
@@ -367,7 +369,7 @@ class MatrixHomeScreen extends StatelessWidget {
                     ),
                     onTap: (){
                       fillMatrix();
-                      print(matrixInfo);
+                      navigateTo(context, Cramer(matrixInfo: matrixInfo));
                     },
                   ),
                 ],
@@ -395,37 +397,37 @@ class MatrixHomeScreen extends StatelessWidget {
     ];
   }
 
-  void calculateGE(){
-    var m21 = matrixInfo[1][0] / matrixInfo[0][0];
-    var m31 = matrixInfo[2][0] / matrixInfo[0][0];
-    //rule E2-(m21)E1 = E2
-    for (int j = 0; j < 4; j++)
-    {
-      var e2 = matrixInfo[1][j];
-      var e1 = ((m21)*matrixInfo[0][j]);
-      matrixInfo[1][j] = e2 - e1;
-    }
-    for (int j = 0; j < 4; j++)
-    {
-      var e3 = matrixInfo[2][j];
-      var e1 = ((m31)*matrixInfo[0][j]);
-      matrixInfo[2][j] = e3 - e1;
-    }
-    var m32 = matrixInfo[2][1] / matrixInfo[1][1];
-//rule E3-(m32)E2 = E3
-    for (int j = 0; j < 4; j++)
-    {
-      var e3 = matrixInfo[2][j];
-      var e1 = ((m32)*matrixInfo[1][j]);
-      matrixInfo[2][j] = e3 - e1;
-    }
-
-    var x3 = matrixInfo[2][3] / matrixInfo[2][2];
-    var x2 = (matrixInfo[1][3] - (matrixInfo[1][2] * x3)) / matrixInfo[1][1];
-    var x1 = (matrixInfo[0][3] - ((matrixInfo[0][1] * x2) + (matrixInfo[0][2] * x3))) / matrixInfo[0][0];
-
-    print('X1 = $x1   , X2 = $x2  , X3 = $x3');
-
-
-  }
+  // void calculateGE(){
+  //   var m21 = matrixInfo[1][0] / matrixInfo[0][0];
+  //   var m31 = matrixInfo[2][0] / matrixInfo[0][0];
+  //   //rule E2-(m21)E1 = E2
+  //   for (int j = 0; j < 4; j++)
+  //   {
+  //     var e2 = matrixInfo[1][j];
+  //     var e1 = ((m21)*matrixInfo[0][j]);
+  //     matrixInfo[1][j] = e2 - e1;
+  //   }
+  //   for (int j = 0; j < 4; j++)
+  //   {
+  //     var e3 = matrixInfo[2][j];
+  //     var e1 = ((m31)*matrixInfo[0][j]);
+  //     matrixInfo[2][j] = e3 - e1;
+  //   }
+  //   var m32 = matrixInfo[2][1] / matrixInfo[1][1];
+  //   //rule E3-(m32)E2 = E3
+  //   for (int j = 0; j < 4; j++)
+  //   {
+  //     var e3 = matrixInfo[2][j];
+  //     var e1 = ((m32)*matrixInfo[1][j]);
+  //     matrixInfo[2][j] = e3 - e1;
+  //   }
+  //
+  //   var x3 = matrixInfo[2][3] / matrixInfo[2][2];
+  //   var x2 = (matrixInfo[1][3] - (matrixInfo[1][2] * x3)) / matrixInfo[1][1];
+  //   var x1 = (matrixInfo[0][3] - ((matrixInfo[0][1] * x2) + (matrixInfo[0][2] * x3))) / matrixInfo[0][0];
+  //
+  //   print('X1 = $x1   , X2 = $x2  , X3 = $x3');
+  //
+  //
+  // }
 }
