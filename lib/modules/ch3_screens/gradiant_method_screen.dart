@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:math_keyboard/math_keyboard.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:numerical_analysis_calculator/modules/ch3_screens/golden_section_results_screen.dart';
 import 'package:numerical_analysis_calculator/shared/components/components.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+import 'package:numerical_analysis_calculator/modules/ch3_screens/gradiant_method_result_screen.dart';
 
-
-class GoldenSectionSearchScreen extends StatelessWidget {
-
+class GradientMethodScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   var equationController = MathFieldEditingController();
-  var xlController = TextEditingController();
-  var xuController = TextEditingController();
-  var iterController = TextEditingController();
-  bool min = true;
+  var xController = TextEditingController();
+  var yController = TextEditingController();
 
-
-  GoldenSectionSearchScreen({Key? key}) : super(key: key);
-
+  GradientMethodScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +39,7 @@ class GoldenSectionSearchScreen extends StatelessWidget {
                   MathField(
                     controller: equationController,
                     keyboardType: MathKeyboardType.expression,
-                    variables: const ['x'],
+                    variables: const ['x','y'],
                     decoration: const InputDecoration(
                       labelText: 'Enter Equation',
                       border: OutlineInputBorder(),
@@ -59,7 +52,7 @@ class GoldenSectionSearchScreen extends StatelessWidget {
                     height: 20,
                   ),
                   const Text(
-                    "XL: ",
+                    "X: ",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -71,14 +64,14 @@ class GoldenSectionSearchScreen extends StatelessWidget {
                   ),
                   TextFormField(
                     keyboardType: TextInputType.number,
-                    controller: xlController,
+                    controller: xController,
                     decoration: const InputDecoration(
-                      labelText: 'Enter XL',
+                      labelText: 'Enter X',
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Enter X Lower";
+                        return "Enter X";
                       }
                       return null;
                     },
@@ -87,7 +80,7 @@ class GoldenSectionSearchScreen extends StatelessWidget {
                     height: 20,
                   ),
                   const Text(
-                    "XU:",
+                    "Y:",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -99,57 +92,18 @@ class GoldenSectionSearchScreen extends StatelessWidget {
                   ),
                   TextFormField(
                     keyboardType: TextInputType.number,
-                    controller: xuController,
+                    controller: yController,
                     decoration: const InputDecoration(
-                      labelText: 'Enter XU',
+                      labelText: 'Enter Y',
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Enter X Upper";
+                        return "Enter Y Upper";
                       }
                       return null;
                     },
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    "Iter:",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: iterController,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter Iter',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Enter Iter";
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  ToggleSwitch(
-                    initialLabelIndex: 0,
-                    totalSwitches: 2,
-                    labels: const ['Min', 'Max'],
-                    onToggle: (index) {
-                      index == 0? min = true : min = false;
-                    },
-                  )
                 ],
               ),
             ),
@@ -160,7 +114,7 @@ class GoldenSectionSearchScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            navigateTo(context, GoldenSectionResultsScreen(xl: double.parse(xlController.text), xu: double.parse(xuController.text), iter: int.parse(iterController.text), equationController: equationController, min: min));
+            navigateTo(context, GradiantMethodResultScreen(equationController: equationController,x: double.parse(xController.text),y: double.parse(yController.text),));
           }
         },
         backgroundColor: HexColor("3F72AF"),
