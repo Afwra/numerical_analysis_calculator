@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:matrix_input/matrix_input.dart';
 import 'package:numerical_analysis_calculator/modules/matrix_screen/cramer.dart';
 import 'package:numerical_analysis_calculator/modules/matrix_screen/gauss_elimination.dart';
+import 'package:numerical_analysis_calculator/modules/matrix_screen/gauss_jordan.dart';
 import 'package:numerical_analysis_calculator/modules/matrix_screen/lu_decomposition.dart';
+import 'package:numerical_analysis_calculator/modules/matrix_screen/partial_pivoting.dart';
 import 'package:numerical_analysis_calculator/shared/components/components.dart';
 import 'package:buildcondition/buildcondition.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -15,29 +17,29 @@ class MatrixHomeScreen extends StatefulWidget {
 }
 
 class _MatrixHomeScreenState extends State<MatrixHomeScreen> {
-  final r0c0 = TextEditingController(text: '0');
+  final r0c0 = TextEditingController(text: '1');
 
   final r0c1 = TextEditingController(text: '0');
 
   final r0c2 = TextEditingController(text: '0');
 
-  final r0c3 = TextEditingController(text: '0');
+  final r0c3 = TextEditingController(text: '1');
 
   final r1c0 = TextEditingController(text: '0');
 
-  final r1c1 = TextEditingController(text: '0');
+  final r1c1 = TextEditingController(text: '1');
 
   final r1c2 = TextEditingController(text: '0');
 
-  final r1c3 = TextEditingController(text: '0');
+  final r1c3 = TextEditingController(text: '1');
 
   final r2c0 = TextEditingController(text: '0');
 
   final r2c1 = TextEditingController(text: '0');
 
-  final r2c2 = TextEditingController(text: '0');
+  final r2c2 = TextEditingController(text: '1');
 
-  final r2c3 = TextEditingController(text: '0');
+  final r2c3 = TextEditingController(text: '1');
 
   bool showMatrix = false;
 
@@ -388,16 +390,65 @@ class _MatrixHomeScreenState extends State<MatrixHomeScreen> {
                           navigateTo(context, Cramer(matrixInfo: matrixInfo));
                         },
                       ),
+                      const SizedBox(width: 10,),
+                      GestureDetector(
+                        child: Container(
+                          height: 150,
+                          width: 150,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "Gauss Jordan",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                        onTap: (){
+                          fillMatrix();
+                          navigateTo(context, GaussJordan(matrixInfo: matrixInfo));
+                        },
+                      ),
+                      const SizedBox(width: 10,),
+                      GestureDetector(
+                        child: Container(
+                          height: 150,
+                          width: 150,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "Partial Pivoting",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                        onTap: (){
+                          fillMatrix();
+                          navigateTo(context, PartialPivoting(matrixInfo: matrixInfo));
+                        },
+                      ),
                     ],
                   ),
                 ),
-                // Expanded(
-                //   child: ListView.separated(
-                //       itemBuilder: (context, index) => matrixList(index,context,r0c0,r0c1,r0c2,r0c3,r1c0,r1c1,r1c2,r1c3,r2c0,r2c1,r2c2,r2c3),
-                //       separatorBuilder: (context,index) =>const SizedBox(height: 5,),
-                //       itemCount: matrixScreens.length
-                //   ),
-                // ),
               ],
             ),
           ),

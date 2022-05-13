@@ -119,7 +119,9 @@ class NewtonScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            navigateTo(context, NewtonResults(x0: double.parse(x0Controller.text), eps: double.parse(errorController.text), equationController: equationController));
+            if(!equationController.isEmpty){
+              navigateTo(context, NewtonResults(x0: double.parse(x0Controller.text), eps: double.parse(errorController.text), equationController: equationController));
+            }
           }
         },
         backgroundColor: HexColor("3F72AF"),

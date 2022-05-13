@@ -4,6 +4,7 @@ import 'package:numerical_analysis_calculator/modules/ch3_screens/optimization_h
 import 'package:numerical_analysis_calculator/modules/home_screen.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:numerical_analysis_calculator/modules/matrix_screen/matrix_home_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class HomeLayout extends StatefulWidget {
 class _HomeLayoutState extends State<HomeLayout> {
   int currentPage = 0;
 
-  List<Widget> screens = [HomeScreen(),MatrixHomeScreen(),OptimizationHomeScreen()];
+  List<Widget> screens = [HomeScreen(),const MatrixHomeScreen(),const OptimizationHomeScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +28,9 @@ class _HomeLayoutState extends State<HomeLayout> {
         bottomNavigationBar: CurvedNavigationBar(
           backgroundColor: Colors.blueAccent,
           items: const <Widget>[
-            Icon(Icons.equalizer, size: 30),
-            Icon(Icons.format_shapes_rounded, size: 30),
-            Icon(Icons.search, size: 30),
+            FaIcon(FontAwesomeIcons.calculator,size: 30),
+            FaIcon(FontAwesomeIcons.m,size: 30),
+            FaIcon(FontAwesomeIcons.searchengin,size: 30),
           ],
           buttonBackgroundColor: Colors.white,
           color: HexColor("3F72AF"),

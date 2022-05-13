@@ -119,13 +119,16 @@ class FixedPointScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            navigateTo(
-                context,
-                FixedPointResults(
+            if(!equationController.isEmpty){
+              navigateTo(
+                  context,
+                  FixedPointResults(
                     eps: double.parse(errorController.text),
                     x0: double.parse(x0Controller.text),
                     equationController: equationController,
-                    ));
+                  ));
+            }
+
           }
         },
         backgroundColor: HexColor("3F72AF"),

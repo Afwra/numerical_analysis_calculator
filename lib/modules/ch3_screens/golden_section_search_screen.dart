@@ -160,7 +160,9 @@ class GoldenSectionSearchScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            navigateTo(context, GoldenSectionResultsScreen(xl: double.parse(xlController.text), xu: double.parse(xuController.text), iter: int.parse(iterController.text), equationController: equationController, min: min));
+            if(!equationController.isEmpty){
+              navigateTo(context, GoldenSectionResultsScreen(xl: double.parse(xlController.text), xu: double.parse(xuController.text), iter: int.parse(iterController.text), equationController: equationController, min: min));
+            }
           }
         },
         backgroundColor: HexColor("3F72AF"),
