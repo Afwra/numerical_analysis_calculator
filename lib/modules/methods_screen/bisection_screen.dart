@@ -148,13 +148,17 @@ class BisectionScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            navigateTo(
-                context,
-                ResultsScreen(
-                    xl: double.parse(xlController.text),
-                    xu: double.parse(xuController.text),
-                    eps: double.parse(errorController.text),
-                    equationController: equationController));
+            if(!equationController.isEmpty)
+              {
+                navigateTo(
+                    context,
+                    ResultsScreen(
+                        xl: double.parse(xlController.text),
+                        xu: double.parse(xuController.text),
+                        eps: double.parse(errorController.text),
+                        equationController: equationController));
+              }
+
           }
         },
         backgroundColor: HexColor("3F72AF"),

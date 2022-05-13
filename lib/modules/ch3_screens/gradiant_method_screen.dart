@@ -114,7 +114,10 @@ class GradientMethodScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            navigateTo(context, GradiantMethodResultScreen(equationController: equationController,x: double.parse(xController.text),y: double.parse(yController.text),));
+            if(!equationController.isEmpty){
+              navigateTo(context, GradiantMethodResultScreen(equationController: equationController,x: double.parse(xController.text),y: double.parse(yController.text),));
+            }
+
           }
         },
         backgroundColor: HexColor("3F72AF"),

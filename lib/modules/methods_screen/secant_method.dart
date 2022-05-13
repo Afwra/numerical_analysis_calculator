@@ -147,7 +147,10 @@ class SecantScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            navigateTo(context, SecantResultsScreen(eps: double.parse(errorController.text), xi: double.parse(xiController.text), xiMinus1: double.parse(xiMinus1Controller.text), equationController: equationController));
+            if(!equationController.isEmpty){
+              navigateTo(context, SecantResultsScreen(eps: double.parse(errorController.text), xi: double.parse(xiController.text), xiMinus1: double.parse(xiMinus1Controller.text), equationController: equationController));
+            }
+
           }
         },
         backgroundColor: HexColor("3F72AF"),
