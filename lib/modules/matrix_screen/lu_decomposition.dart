@@ -68,8 +68,8 @@ class LuDecomposition extends StatelessWidget {
                 fontSize: 16.0,
                 backgroundColor: Colors.white,
                 child: Container(
-                  height: 250,
-                  width: 250,
+                  height: 300,
+                  width: 300,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -114,8 +114,8 @@ class LuDecomposition extends StatelessWidget {
                 fontSize: 16.0,
                 backgroundColor: Colors.white,
                 child: Container(
-                  height: 250,
-                  width: 250,
+                  height: 300,
+                  width: 300,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -154,8 +154,8 @@ class LuDecomposition extends StatelessWidget {
                 fontSize: 16.0,
                 backgroundColor: Colors.white,
                 child: Container(
-                  height: 250,
-                  width: 250,
+                  height: 300,
+                  width: 300,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -197,8 +197,8 @@ class LuDecomposition extends StatelessWidget {
                       fontSize: 16.0,
                       backgroundColor: Colors.white,
                       child: Container(
-                        height: 250,
-                        width: 250,
+                        height: 300,
+                        width: 300,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -239,8 +239,8 @@ class LuDecomposition extends StatelessWidget {
                       fontSize: 16.0,
                       backgroundColor: Colors.white,
                       child: Container(
-                        height: 250,
-                        width: 250,
+                        height: 300,
+                        width: 300,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
