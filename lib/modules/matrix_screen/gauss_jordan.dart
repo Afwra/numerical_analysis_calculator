@@ -98,68 +98,69 @@ class GaussJordan extends StatelessWidget {
     }
     print(matrixInfo);
 
-  //   print(matrixInfo); // main matrix
-  //
-  //   var firstElement = matrixInfo[0][0];
-  //   for(int i = 0;i<4;i++){
-  //     matrixInfo[0][i] *= (1/firstElement);
-  //   }
-  //   print(matrixInfo); // first step
-  //
-  //
-  //   var secondElement = matrixInfo[1][0];
-  //   var thirdElement = matrixInfo[2][0];
-  //   for(int i = 0;i<4;i++){
-  //     // if(i == 0){
-  //     //   if(matrixInfo[1][0] > 0){
-  //     //     matrixInfo[1][i] = secondElement * matrixInfo[0][i] - matrixInfo[1][i];
-  //     //   } else{
-  //     //     matrixInfo[1][i] = secondElement * matrixInfo[0][i] + matrixInfo[1][i];
-  //     //   }
-  //     //   if(matrixInfo[2][0] > 0){
-  //     //     matrixInfo[2][i] = thirdElement * matrixInfo[0][i] - matrixInfo[2][i];
-  //     //   } else{
-  //     //     matrixInfo[2][i] = thirdElement * matrixInfo[0][i] + matrixInfo[2][i];
-  //     //   }
-  //     // }else{
-  //     //   matrixInfo[1][i] = secondElement * matrixInfo[0][i] - matrixInfo[1][i];
-  //     //   matrixInfo[2][i] = thirdElement * matrixInfo[0][i] - matrixInfo[2][i];
-  //     // }
-  //     matrixInfo[1][i] = secondElement * matrixInfo[0][i] - (matrixInfo[1][i]).abs();
-  //     matrixInfo[2][i] = thirdElement * matrixInfo[0][i] - (matrixInfo[2][i]).abs();
-  //
-  //   }
-  //   print(matrixInfo); // second step
-  //
-  //   var secondColumnElement = pow(matrixInfo[1][1],-1);
-  //   for(int i = 0;i<4;i++){
-  //     matrixInfo[1][i] *= secondColumnElement;
-  //   }
-  //   print(matrixInfo); // third step
-  //
-  //
-  //   var secondColumnFirstElement = matrixInfo[0][1];
-  //   var secondColumnThirdElement = matrixInfo[2][1];
-  //   for(int i = 0;i<4;i++){
-  //     matrixInfo[0][i] = - 1 * secondColumnFirstElement * matrixInfo[1][i] + (matrixInfo[0][i]);
-  //     matrixInfo[2][i] = - 1 * secondColumnThirdElement * matrixInfo[1][i] + (matrixInfo[2][i]);
-  //   }
-  //   print(matrixInfo); //forth step
-  //
-  //   var thirdColumnElement = pow(matrixInfo[2][2],-1);
-  //   for(int i = 0;i<4;i++){
-  //     matrixInfo[2][i] *= thirdColumnElement;
-  //   }
-  //   print(matrixInfo);// fifth step
-  //
-  //
-  //   var thirdColumnFirstElement = matrixInfo[0][2];
-  //   var thirdColumnSecondElement = matrixInfo[1][2];
-  //   for(int i = 0;i<4;i++){
-  //     matrixInfo[0][i] = - 1 * thirdColumnFirstElement * matrixInfo[2][i] + (matrixInfo[0][i]);
-  //     matrixInfo[1][i] = - 1 * thirdColumnSecondElement * matrixInfo[2][i] + (matrixInfo[1][i]);
-  //   }
-  //   print(matrixInfo);
+
   }
+//   print(matrixInfo); // main matrix
+//
+//   var firstElement = matrixInfo[0][0];
+//   for(int i = 0;i<4;i++){
+//     matrixInfo[0][i] *= (1/firstElement);
+//   }
+//   print(matrixInfo); // first step
+//
+//
+//   var secondElement = matrixInfo[1][0];
+//   var thirdElement = matrixInfo[2][0];
+//   for(int i = 0;i<4;i++){
+//     // if(i == 0){
+//     //   if(matrixInfo[1][0] > 0){
+//     //     matrixInfo[1][i] = secondElement * matrixInfo[0][i] - matrixInfo[1][i];
+//     //   } else{
+//     //     matrixInfo[1][i] = secondElement * matrixInfo[0][i] + matrixInfo[1][i];
+//     //   }
+//     //   if(matrixInfo[2][0] > 0){
+//     //     matrixInfo[2][i] = thirdElement * matrixInfo[0][i] - matrixInfo[2][i];
+//     //   } else{
+//     //     matrixInfo[2][i] = thirdElement * matrixInfo[0][i] + matrixInfo[2][i];
+//     //   }
+//     // }else{
+//     //   matrixInfo[1][i] = secondElement * matrixInfo[0][i] - matrixInfo[1][i];
+//     //   matrixInfo[2][i] = thirdElement * matrixInfo[0][i] - matrixInfo[2][i];
+//     // }
+//     matrixInfo[1][i] = secondElement * matrixInfo[0][i] - (matrixInfo[1][i]).abs();
+//     matrixInfo[2][i] = thirdElement * matrixInfo[0][i] - (matrixInfo[2][i]).abs();
+//
+//   }
+//   print(matrixInfo); // second step
+//
+//   var secondColumnElement = pow(matrixInfo[1][1],-1);
+//   for(int i = 0;i<4;i++){
+//     matrixInfo[1][i] *= secondColumnElement;
+//   }
+//   print(matrixInfo); // third step
+//
+//
+//   var secondColumnFirstElement = matrixInfo[0][1];
+//   var secondColumnThirdElement = matrixInfo[2][1];
+//   for(int i = 0;i<4;i++){
+//     matrixInfo[0][i] = - 1 * secondColumnFirstElement * matrixInfo[1][i] + (matrixInfo[0][i]);
+//     matrixInfo[2][i] = - 1 * secondColumnThirdElement * matrixInfo[1][i] + (matrixInfo[2][i]);
+//   }
+//   print(matrixInfo); //forth step
+//
+//   var thirdColumnElement = pow(matrixInfo[2][2],-1);
+//   for(int i = 0;i<4;i++){
+//     matrixInfo[2][i] *= thirdColumnElement;
+//   }
+//   print(matrixInfo);// fifth step
+//
+//
+//   var thirdColumnFirstElement = matrixInfo[0][2];
+//   var thirdColumnSecondElement = matrixInfo[1][2];
+//   for(int i = 0;i<4;i++){
+//     matrixInfo[0][i] = - 1 * thirdColumnFirstElement * matrixInfo[2][i] + (matrixInfo[0][i]);
+//     matrixInfo[1][i] = - 1 * thirdColumnSecondElement * matrixInfo[2][i] + (matrixInfo[1][i]);
+//   }
+//   print(matrixInfo);
 
 }

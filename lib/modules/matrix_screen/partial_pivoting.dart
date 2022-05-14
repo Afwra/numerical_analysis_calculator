@@ -47,6 +47,8 @@ class PartialPivoting extends StatelessWidget {
   double c2 = 0;
   double c3 = 0;
 
+  bool valuesChanged = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -86,8 +88,8 @@ class PartialPivoting extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text('m21 = ${m31.toString()}',style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
-                            Text('m31 = ${m21.toString()}',style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+                            Text('m21 = ${valuesChanged? m31.toString():m21.toString()}',style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+                            Text('m31 = ${valuesChanged? m21.toString() : m31.toString()}',style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
                           ],
                         ),
                       ],
@@ -555,6 +557,7 @@ class PartialPivoting extends StatelessWidget {
       double tmp = m21;
       m21 =  m31;
       m31 = tmp;
+      valuesChanged = true;
     }
 
 
