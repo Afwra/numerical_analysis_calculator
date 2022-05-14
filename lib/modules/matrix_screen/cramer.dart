@@ -35,8 +35,8 @@ class Cramer extends StatelessWidget {
                 fontSize: 16.0,
                 backgroundColor: Colors.white,
                 child: Container(
-                  height: 250,
-                  width: 250,
+                  height: 300,
+                  width: 300,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -75,8 +75,8 @@ class Cramer extends StatelessWidget {
                 fontSize: 16.0,
                 backgroundColor: Colors.white,
                 child: Container(
-                  height: 250,
-                  width: 250,
+                  height: 300,
+                  width: 300,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -115,8 +115,8 @@ class Cramer extends StatelessWidget {
                 fontSize: 16.0,
                 backgroundColor: Colors.white,
                 child: Container(
-                  height: 250,
-                  width: 250,
+                  height: 300,
+                  width: 300,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -155,8 +155,8 @@ class Cramer extends StatelessWidget {
                 fontSize: 16.0,
                 backgroundColor: Colors.white,
                 child: Container(
-                  height: 250,
-                  width: 250,
+                  height: 300,
+                  width: 300,
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -193,11 +193,11 @@ class Cramer extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text('X1 = ${detAList[0]} / ${detA} = ${detAList[0]/detA},\n',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
+                    Text('X1 = ${detAList[0]} / $detA = ${detAList[0]/detA},\n',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
                     const SizedBox(width: 10,),
-                    Text('X2 = ${detAList[1]} / ${detA} = ${detAList[1]/detA},\n',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
+                    Text('X2 = ${detAList[1]} / $detA = ${detAList[1]/detA},\n',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
                     const SizedBox(width: 10,),
-                    Text('X3 = ${detAList[2]} / ${detA} = ${detAList[2]/detA},\n',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
+                    Text('X3 = ${detAList[2]} / $detA = ${detAList[2]/detA},\n',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
                   ],
                 ),
               )
@@ -242,4 +242,25 @@ class Cramer extends StatelessWidget {
     // }
 
   }
+  // double precise(double n){
+  //   return double.parse(n.toStringAsFixed(2));
+  // }
+  // void fixOutput(){
+  //   for(int i =0; i< 3;i++){
+  //     for(int j =0; j< 4;j++){
+  //
+  //       result1[i][j] = precise(result1[i][j]);
+  //       result2[i][j] = precise(result2[i][j]);
+  //       result3[i][j] = precise(result3[i][j]);
+  //
+  //     }
+  //   }
+  //   detA = precise(detA);
+  //   m31 = precise(m31);
+  //   m32 = precise(m32);
+  //
+  //   x1 = precise(x1);
+  //   x2 = precise(x2);
+  //   x3 = precise(x3);
+  // }
 }

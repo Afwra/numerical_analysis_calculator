@@ -162,7 +162,9 @@ class GaussElimination extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text('X1 = $x1',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
+                const SizedBox(width: 10,),
                 Text('X2 = $x2',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
+                const SizedBox(width: 10,),
                 Text('X3 = $x3',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
               ],
             )
@@ -207,7 +209,28 @@ class GaussElimination extends StatelessWidget {
     x3 = matrixInfo[2][3] / matrixInfo[2][2];
     x2 = (matrixInfo[1][3] - (matrixInfo[1][2] * x3)) / matrixInfo[1][1];
     x1 = (matrixInfo[0][3] - ((matrixInfo[0][1] * x2) + (matrixInfo[0][2] * x3))) / matrixInfo[0][0];
+    fixOutput();
   }
+  double precise(double n){
+    return double.parse(n.toStringAsFixed(2));
+  }
+  void fixOutput(){
+    for(int i =0; i< 3;i++){
+      for(int j =0; j< 4;j++){
 
+        result1[i][j] = precise(result1[i][j]);
+        result2[i][j] = precise(result2[i][j]);
+        result3[i][j] = precise(result3[i][j]);
+
+      }
+    }
+    m21 = precise(m21);
+    m31 = precise(m31);
+    m32 = precise(m32);
+
+    x1 = precise(x1);
+    x2 = precise(x2);
+    x3 = precise(x3);
+  }
 
 }
