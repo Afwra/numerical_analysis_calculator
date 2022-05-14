@@ -349,13 +349,18 @@ class LuDecomposition extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('C1 = $c1',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
-                  Text('C2 = $c2',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
-                  Text('C3 = $c3',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text('C1 = $c1',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
+                    const SizedBox(width: 10,),
+                    Text('C2 = $c2',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
+                    const SizedBox(width: 10,),
+                    Text('C3 = $c3',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+                  ],
+                ),
               ),
               const SizedBox(height: 20,),
               SingleChildScrollView(
@@ -430,13 +435,18 @@ class LuDecomposition extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('X1 = $x1',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
-                  Text('X2 = $x2',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
-                  Text('X3 = $x3',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text('X1 = $x1',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
+                    const SizedBox(width: 10,),
+                    Text('X2 = $x2',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20) ,),
+                    const SizedBox(width: 10,),
+                    Text('X3 = $x3',style:const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
+                  ],
+                ),
               ),
             ],
           ),
@@ -484,6 +494,8 @@ class LuDecomposition extends StatelessWidget {
     x3 = matrixInfo[2][3] / matrixInfo[2][2];
     x2 = (matrixInfo[1][3] - (matrixInfo[1][2] * x3)) / matrixInfo[1][1];
     x1 = (matrixInfo[0][3] - ((matrixInfo[0][1] * x2) + (matrixInfo[0][2] * x3))) / matrixInfo[0][0];
+
+    fixOutput();
   }
   void calculateGE(){
     result1 = json.decode(json.encode(matrixInfo));
@@ -516,6 +528,37 @@ class LuDecomposition extends StatelessWidget {
       matrixInfo[2][j] = e3 - e1;
     }
     result3 = json.decode(json.encode(matrixInfo));
+  }
+  double precise(double n){
+    return double.parse(n.toStringAsFixed(2));
+  }
+  void fixOutput(){
+    for(int i =0; i< 3;i++){
+      for(int j =0; j< 4;j++){
+
+        result1[i][j] = precise(result1[i][j]);
+        result2[i][j] = precise(result2[i][j]);
+        result3[i][j] = precise(result3[i][j]);
+
+      }
+    }
+    for(int i =0; i< 3;i++){
+      for(int j =0; j< 3;j++){
+        u[i][j] = precise(u[i][j]);
+        l[i][j] = precise(l[i][j]);
+      }
+    }
+    m21 = precise(m21);
+    m31 = precise(m31);
+    m32 = precise(m32);
+
+    x1 = precise(x1);
+    x2 = precise(x2);
+    x3 = precise(x3);
+
+    c1 = precise(c1);
+    c2 = precise(c2);
+    c3 = precise(c3);
   }
 }
 

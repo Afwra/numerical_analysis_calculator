@@ -96,9 +96,18 @@ class GaussJordan extends StatelessWidget {
       matrixInfo[f][f] = 1.0;
 
     }
-    print(matrixInfo);
+    fixOutput();
 
-
+  }
+  double precise(double n){
+    return double.parse(n.toStringAsFixed(2));
+  }
+  void fixOutput(){
+    for(int i =0; i< 3;i++){
+      for(int j =0; j< 4;j++){
+        matrixInfo[i][j] = precise(matrixInfo[i][j]);
+      }
+    }
   }
 //   print(matrixInfo); // main matrix
 //
