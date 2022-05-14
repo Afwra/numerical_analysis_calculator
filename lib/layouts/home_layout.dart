@@ -26,7 +26,7 @@ class _HomeLayoutState extends State<HomeLayout> {
         appBar: AppBar(title: const Text('Parabola'),backgroundColor: HexColor("3F72AF"),),
         body: screens[currentPage],
         bottomNavigationBar: CurvedNavigationBar(
-          backgroundColor: Colors.blueAccent,
+          backgroundColor: HexColor("DBE2EF"),
           items: const <Widget>[
             FaIcon(FontAwesomeIcons.calculator,size: 30),
             FaIcon(FontAwesomeIcons.m,size: 30),

@@ -21,7 +21,7 @@ class Cramer extends StatelessWidget {
   Widget build(BuildContext context) {
     calculateCramer();
     return Scaffold(
-      appBar: AppBar(title: const Text('Gauss Results'),backgroundColor: HexColor("3F72AF")),
+      appBar: AppBar(title: const Text('Cramer Results'),backgroundColor: HexColor("3F72AF")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

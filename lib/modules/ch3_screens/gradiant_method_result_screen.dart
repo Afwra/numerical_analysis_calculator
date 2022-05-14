@@ -31,7 +31,7 @@ class GradiantMethodResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     calculateGradiant();
     return Scaffold(
-      appBar: AppBar(title: const Text('Gauss Results'),backgroundColor: HexColor("3F72AF")),
+      appBar: AppBar(title: const Text('Results'),backgroundColor: HexColor("3F72AF")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
