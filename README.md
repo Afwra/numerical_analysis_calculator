@@ -1,6 +1,6 @@
 # numerical_analysis_calculator
 
-A new Flutter project.
+A new Flutter project for solving Numerical Analysis Methods.
 
 ## Getting Started
 
