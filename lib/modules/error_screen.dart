@@ -5,20 +5,21 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
+      children: [
         Text(
           "Error the equation can't be solved",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 30,
-
           ),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 15,),
+        SizedBox(
+          height: 15,
+        ),
         Text(
           "Check Inputs",
           style: TextStyle(

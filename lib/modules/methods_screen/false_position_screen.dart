@@ -5,69 +5,65 @@ import 'package:math_keyboard/math_keyboard.dart';
 import '../../shared/components/components.dart';
 import '../results_screen/false_position_results.dart';
 
-
 class FalsePositionScreen extends StatelessWidget {
-
-  var formKey = GlobalKey<FormState>();
-  var equationController = MathFieldEditingController();
-  var xlController = TextEditingController();
-  var xuController = TextEditingController();
-  var errorController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final equationController = MathFieldEditingController();
+  final xlController = TextEditingController();
+  final xuController = TextEditingController();
+  final errorController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
         title: const Text('False Position Method'),
         backgroundColor: HexColor("3F72AF"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20),
         child: Center(
           child: SingleChildScrollView(
             child: Form(
               key: formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
                     "Enter Equation: ",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   MathField(
                     controller: equationController,
                     keyboardType: MathKeyboardType.expression,
-                    variables: const ['x', 'y', 'z'],
+                    variables: const ['x'],
                     decoration: const InputDecoration(
                       labelText: 'Enter Equation',
                       border: OutlineInputBorder(),
                     ),
                     onChanged: (String value) {},
                     onSubmitted: (String value) {},
-                    autofocus: false,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   const Text(
                     "XL: ",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     controller: xlController,
@@ -82,20 +78,15 @@ class FalsePositionScreen extends StatelessWidget {
                       return null;
                     },
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   const Text(
-                    "XU:",
+                    "XU: ",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     controller: xuController,
@@ -110,20 +101,15 @@ class FalsePositionScreen extends StatelessWidget {
                       return null;
                     },
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   const Text(
-                    "Error Rate:",
+                    "Error Rate: ",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     controller: errorController,
@@ -137,7 +123,7 @@ class FalsePositionScreen extends StatelessWidget {
                       }
                       return null;
                     },
-                  )
+                  ),
                 ],
               ),
             ),
@@ -148,16 +134,17 @@ class FalsePositionScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            if(!equationController.isEmpty){
+            if (!equationController.isEmpty) {
               navigateTo(
-                  context,
-                  FalsePositionResultsScreen(
-                      xl: double.parse(xlController.text),
-                      xu: double.parse(xuController.text),
-                      eps: double.parse(errorController.text),
-                      equationController: equationController));
+                context,
+                FalsePositionResultsScreen(
+                  xl: double.parse(xlController.text),
+                  xu: double.parse(xuController.text),
+                  eps: double.parse(errorController.text),
+                  equationController: equationController,
+                ),
+              );
             }
-
           }
         },
         backgroundColor: HexColor("3F72AF"),

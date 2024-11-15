@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:math_keyboard/math_keyboard.dart';
 
-import '../../shared/components/components.dart';
 import '../results_screen/fixed_point_results.dart';
 
 class FixedPointScreen extends StatelessWidget {
-  var formKey = GlobalKey<FormState>();
-  var equationController = MathFieldEditingController();
-  var x0Controller = TextEditingController();
-  var errorController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final equationController = MathFieldEditingController();
+  final x0Controller = TextEditingController();
+  final errorController = TextEditingController();
 
   FixedPointScreen({Key? key}) : super(key: key);
 
@@ -17,11 +16,19 @@ class FixedPointScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
         title: const Text('Simple Fixed Point Method'),
         backgroundColor: HexColor("3F72AF"),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20),
         child: Center(
           child: SingleChildScrollView(
             child: Form(
@@ -30,85 +37,11 @@ class FixedPointScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Enter Equation: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  MathField(
-                    controller: equationController,
-                    keyboardType: MathKeyboardType.expression,
-                    variables: const ['x'],
-                    decoration: const InputDecoration(
-                      labelText: 'Enter Equation',
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (String value) {},
-                    onSubmitted: (String value) {},
-                    autofocus: false,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    "X0: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: x0Controller,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter X0',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Enter X0";
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    "Error Rate:",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: errorController,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter Error',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Enter Error";
-                      }
-                      return null;
-                    },
-                  )
+                  _buildEquationField(),
+                  const SizedBox(height: 20),
+                  _buildX0Field(),
+                  const SizedBox(height: 20),
+                  _buildErrorField(),
                 ],
               ),
             ),
@@ -119,21 +52,114 @@ class FixedPointScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            if(!equationController.isEmpty){
-              navigateTo(
-                  context,
-                  FixedPointResults(
+            if (!equationController.isEmpty) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FixedPointResults(
                     eps: double.parse(errorController.text),
                     x0: double.parse(x0Controller.text),
                     equationController: equationController,
-                  ));
+                  ),
+                ),
+              );
             }
-
           }
         },
         backgroundColor: HexColor("3F72AF"),
         child: const Icon(Icons.play_arrow_rounded),
       ),
+    );
+  }
+
+  Widget _buildEquationField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Enter Equation: ",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        const SizedBox(height: 10),
+        MathField(
+          controller: equationController,
+          keyboardType: MathKeyboardType.expression,
+          variables: const ['x'],
+          decoration: const InputDecoration(
+            labelText: 'Enter Equation',
+            border: OutlineInputBorder(),
+          ),
+          onChanged: (String value) {},
+          onSubmitted: (String value) {},
+          autofocus: false,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildX0Field() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "X0: ",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        const SizedBox(height: 10),
+        TextFormField(
+          keyboardType: TextInputType.number,
+          controller: x0Controller,
+          decoration: const InputDecoration(
+            labelText: 'Enter X0',
+            border: OutlineInputBorder(),
+          ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Enter X0";
+            }
+            return null;
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildErrorField() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Error Rate:",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        const SizedBox(height: 10),
+        TextFormField(
+          keyboardType: TextInputType.number,
+          controller: errorController,
+          decoration: const InputDecoration(
+            labelText: 'Enter Error',
+            border: OutlineInputBorder(),
+          ),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Enter Error";
+            }
+            return null;
+          },
+        ),
+      ],
     );
   }
 }
