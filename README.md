@@ -1,6 +1,8 @@
 # Parabola
 
+
 **Parabola** is a Flutter application created during my third year at university. It was one of my first projects in Flutter, and I developed it to implement various mathematical functions commonly taught in numerical analysis courses. The app offers solutions for different methods used in solving numerical problems, making it a handy tool for students studying these concepts.
+
 
 ## Features
 
