@@ -14,7 +14,9 @@ class GradientMethodScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Golden Section Search'),backgroundColor: HexColor("3F72AF")),
+      appBar: AppBar(
+          title: const Text('Gradiant Method'),
+          backgroundColor: HexColor("3F72AF")),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(
@@ -39,7 +41,7 @@ class GradientMethodScreen extends StatelessWidget {
                   MathField(
                     controller: equationController,
                     keyboardType: MathKeyboardType.expression,
-                    variables: const ['x','y'],
+                    variables: const ['x', 'y'],
                     decoration: const InputDecoration(
                       labelText: 'Enter Equation',
                       border: OutlineInputBorder(),
@@ -114,10 +116,15 @@ class GradientMethodScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
-            if(!equationController.isEmpty){
-              navigateTo(context, GradiantMethodResultScreen(equationController: equationController,x: double.parse(xController.text),y: double.parse(yController.text),));
+            if (!equationController.isEmpty) {
+              navigateTo(
+                  context,
+                  GradiantMethodResultScreen(
+                    equationController: equationController,
+                    x: double.parse(xController.text),
+                    y: double.parse(yController.text),
+                  ));
             }
-
           }
         },
         backgroundColor: HexColor("3F72AF"),

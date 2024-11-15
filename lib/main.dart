@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:numerical_analysis_calculator/layouts/home_layout.dart';
 
-
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -14,8 +13,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return EasySplashScreen(
-      logo: const Image(image: AssetImage('images/parabola.png'),),
-      title:const Text(
+      logo: const Image(
+        image: AssetImage('images/parabola.png'),
+      ),
+      title: const Text(
         "Parabola",
         style: TextStyle(
           fontSize: 18,
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
       backgroundColor: Colors.grey.shade400,
       showLoader: true,
       loadingText: const Text("Loading..."),
-      navigator:const HomeLayout(),
+      navigator: const HomeLayout(),
       durationInSeconds: 5,
     );
   }
@@ -38,6 +39,9 @@ class _MyAppState extends State<MyApp> {
   // // }
 }
 
-void main(){
-  runApp(const MaterialApp(home: MyApp(),debugShowCheckedModeBanner: false,));
+void main() {
+  runApp(const MaterialApp(
+    home: MyApp(),
+    debugShowCheckedModeBanner: false,
+  ));
 }

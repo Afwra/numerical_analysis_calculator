@@ -1,11 +1,8 @@
-
 import 'package:flutter_titled_container/flutter_titled_container.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-
 class GaussJordan extends StatelessWidget {
-
   var matrixInfo = [];
   GaussJordan({Key? key, required this.matrixInfo}) : super(key: key);
 
@@ -13,7 +10,9 @@ class GaussJordan extends StatelessWidget {
   Widget build(BuildContext context) {
     calculateGaussJordan();
     return Scaffold(
-      appBar: AppBar(title: const Text('Gauss Jordan Results'),backgroundColor: HexColor("3F72AF")),
+      appBar: AppBar(
+          title: const Text('Gauss Jordan Results'),
+          backgroundColor: HexColor("3F72AF")),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -29,33 +28,6 @@ class GaussJordan extends StatelessWidget {
                 child: Container(
                   height: 250,
                   width: double.infinity,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        RichText(
-                            text: TextSpan(
-                                style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 25),
-                                children:<TextSpan>[
-                                  TextSpan(text: '${matrixInfo[0].toString()}\n'),
-                                  TextSpan(text: '${matrixInfo[1].toString()}\n'),
-                                  TextSpan(text: '${matrixInfo[2].toString()}\n'),
-                                ]
-                            )
-                        ),
-                        const SizedBox(height: 5,),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text('X1 = ${matrixInfo[0][3].toString()}',style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
-                            Text('X2 = ${matrixInfo[1][3].toString()}',style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
-                            Text('X3 = ${matrixInfo[2][3].toString()}',style: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.blue,
@@ -63,7 +35,54 @@ class GaussJordan extends StatelessWidget {
                     borderRadius: const BorderRadius.all(
                       Radius.circular(10.0),
                     ),
-
+                  ),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RichText(
+                            text: TextSpan(
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25),
+                                children: <TextSpan>[
+                              TextSpan(text: '${matrixInfo[0].toString()}\n'),
+                              TextSpan(text: '${matrixInfo[1].toString()}\n'),
+                              TextSpan(text: '${matrixInfo[2].toString()}\n'),
+                            ])),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'X1 = ${matrixInfo[0][3].toString()}',
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                            Text(
+                              'X2 = ${matrixInfo[1][3].toString()}',
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                            Text(
+                              'X3 = ${matrixInfo[2][3].toString()}',
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -75,36 +94,33 @@ class GaussJordan extends StatelessWidget {
     );
   }
 
-  void calculateGaussJordan(){
+  void calculateGaussJordan() {
     double t;
-    for (int i = 0; i < 3; i++){
-      for (int j = 0; j < 3; j++){
-        if (i != j){
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (i != j) {
           t = matrixInfo[j][i] / matrixInfo[i][i];
-          for (int k = 0; k < 4; k++){
+          for (int k = 0; k < 4; k++) {
             matrixInfo[j][k] = matrixInfo[j][k] - (matrixInfo[i][k] * t);
           }
-
-
         }
       }
     }
 
-
-    for (int f = 0; f < 3; f++){
+    for (int f = 0; f < 3; f++) {
       matrixInfo[f][3] = matrixInfo[f][3] / matrixInfo[f][f];
       matrixInfo[f][f] = 1.0;
-
     }
     fixOutput();
-
   }
-  double precise(double n){
+
+  double precise(double n) {
     return double.parse(n.toStringAsFixed(2));
   }
-  void fixOutput(){
-    for(int i =0; i< 3;i++){
-      for(int j =0; j< 4;j++){
+
+  void fixOutput() {
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 4; j++) {
         matrixInfo[i][j] = precise(matrixInfo[i][j]);
       }
     }
@@ -171,5 +187,4 @@ class GaussJordan extends StatelessWidget {
 //     matrixInfo[1][i] = - 1 * thirdColumnSecondElement * matrixInfo[2][i] + (matrixInfo[1][i]);
 //   }
 //   print(matrixInfo);
-
 }
